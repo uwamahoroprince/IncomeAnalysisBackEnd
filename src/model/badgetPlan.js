@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 
 const BadgetPlan = new mongoose.Schema({
-  account: [
-    {
-      type: mongoose.Schema.ObjectId,
-      require: [true, "at least one acount is required "],
-      ref: "account",
-    },
-  ],
+  account: {
+    type: mongoose.Schema.ObjectId,
+    require: [true, "at least one acount is required "],
+    ref: "account",
+  },
+
   expense: [{}],
   expectedIncome: {
     type: Number,
@@ -15,7 +14,8 @@ const BadgetPlan = new mongoose.Schema({
   },
   status: {
     type: String,
-    require: [true, "status is required"],
+    enum: ["active", "inactive"],
+    default: "active",
   },
   endDate: {
     type: Date,

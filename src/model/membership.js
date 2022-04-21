@@ -1,20 +1,6 @@
 const mongoose = require("mongoose");
 
 const Membership = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "name is required"],
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: [true, "Please add an email"],
-    unique: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email",
-    ],
-  },
   activity: [
     {
       type: mongoose.Schema.ObjectId,
@@ -32,7 +18,7 @@ const Membership = new mongoose.Schema({
   },
   startDate: {
     type: Date,
-    default: Date.now(),
+    required: [true, "start date is required"],
   },
   endDate: {
     type: Date,

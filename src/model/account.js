@@ -15,7 +15,12 @@ const Account = new mongoose.Schema({
   currency: {
     type: String,
     required: [true, "curenncy is required"],
-    unique: true,
+    trim: true,
+  },
+  description: {
+    type: String,
+    required: false,
+    unique: false,
     trim: true,
   },
   createdAt: {

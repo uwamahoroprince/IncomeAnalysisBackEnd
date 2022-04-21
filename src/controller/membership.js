@@ -7,6 +7,7 @@ exports.postMemberShip = asyncHander(async (req, res, next) => {
   if (!memberShip) {
     return next(new ErrorResponse("could not create new MemberShip", 400));
   }
+  console.log(memberShip.client);
   res.status(201).json({
     message: "MemberShip created",
     data: memberShip,
