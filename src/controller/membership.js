@@ -3,11 +3,21 @@ const ErrorResponse = require("../util/errorResponse");
 const MemberShip = require("../model/membership");
 
 exports.postMemberShip = asyncHander(async (req, res, next) => {
-  const memberShip = await MemberShip.create(req.body);
+  const allActivities = [];
+  for (const key in req.body.activity) {
+    allActivities.push(req.body.activity[key].value);
+  }
+  const data = {
+    activity: allActivities,
+    client: req.body.client,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+  };
+  const memberShip = await MemberShip.create(data);
   if (!memberShip) {
     return next(new ErrorResponse("could not create new MemberShip", 400));
   }
-  console.log(memberShip.client);
+
   res.status(201).json({
     message: "MemberShip created",
     data: memberShip,
