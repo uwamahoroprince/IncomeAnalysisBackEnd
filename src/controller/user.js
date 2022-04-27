@@ -49,7 +49,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 };
 exports.getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await Users.find({});
-  if (!users || users.length === 0) {
+  if (!users) {
     return next(new ErrorResponce("could not get users", 400));
   }
   res.status(200).json({

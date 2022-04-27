@@ -38,7 +38,7 @@ exports.confirmAccount = asyncHander(async (req, res, next) => {
 exports.login = asyncHander(async (req, res, next) => {
   const { userName, password } = req.body;
   //validating userName and passcode (not empty)
-  if (!userName || !userName) {
+  if (!userName || !password) {
     res.status(400).json({
       message: "please provide  username and password",
     });
@@ -50,11 +50,11 @@ exports.login = asyncHander(async (req, res, next) => {
       message: "please provide  username and password",
     });
   }
-  if (!user.confirmed) {
-    res.status(401).json({
-      message: "your account is not confirmed yet",
-    });
-  }
+  // if (!user.confirmed) {
+  //   res.status(401).json({
+  //     message: "your account is not confirmed yet",
+  //   });
+  // }
   //comparing enterd passcode with from databse
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
