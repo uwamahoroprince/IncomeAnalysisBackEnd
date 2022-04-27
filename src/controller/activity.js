@@ -35,7 +35,7 @@ exports.findsingleActivities = asyncHander(async (req, res, next) => {
   }
   res.status(200).json({
     message: "Activity found",
-    data: Activitys,
+    data: activity,
   });
 });
 exports.deleteActivity = asyncHander(async (req, res, next) => {
