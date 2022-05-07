@@ -35,7 +35,7 @@ exports.findsingleAccount = asyncHander(async (req, res, next) => {
   }
   res.status(200).json({
     message: "account found",
-    data: accounts,
+    data: account,
   });
 });
 exports.deleteAccount = asyncHander(async (req, res, next) => {

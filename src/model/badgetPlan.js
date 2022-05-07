@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const BadgetPlan = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Please Add Provide Budget Name"],
+    trim: true,
+  },
   account: {
     type: mongoose.Schema.ObjectId,
     require: [true, "at least one acount is required "],
@@ -24,6 +29,12 @@ const BadgetPlan = new mongoose.Schema({
   startDate: {
     type: Date,
     default: Date.now(),
+  },
+  description: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true,
   },
   createdAt: {
     type: Date,
