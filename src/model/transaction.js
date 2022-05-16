@@ -14,6 +14,10 @@ const Transaction = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "client",
   },
+  description: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

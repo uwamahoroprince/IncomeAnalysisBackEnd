@@ -57,3 +57,28 @@ exports.getAllUsers = asyncHandler(async (req, res, next) => {
     data: users,
   });
 });
+exports.getSingleUser = asyncHandler(async (req, res, next) => {
+  const singleUser = await Users.findById(req.params.id);
+  if (!singleUser) {
+    return next(new ErrorResponce("could not get user ", 400));
+  }
+  res.status(200).json({
+    message: "found successfuly",
+    data: singleUser,
+  });
+});
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const staff = await Users.findByIdAndUpdate({ _id: req.params.id }, req.body);
+  if (!staff) {
+    return next(
+      new ErrorResponse(
+        `could not update  Transaction with an id of ${req.params.id}`,
+        400
+      )
+    );
+  }
+  res.status(200).json({
+    message: "Transaction updated",
+    data: staff,
+  });
+});
